@@ -1,0 +1,120 @@
+ISP2-R#sh running-config 
+Building configuration...
+
+Current configuration : 1414 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname ISP2-R
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FTX152459AU-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/0
+ ip address 115.205.30.5 255.255.255.252
+!
+interface GigabitEthernet0/1/0
+ ip address 115.205.30.1 255.255.255.252
+!
+interface GigabitEthernet0/2/0
+ ip address 115.205.30.9 255.255.255.252
+!
+interface Serial0/3/0
+ no ip address
+ clock rate 2000000
+!
+interface Serial0/3/1
+ no ip address
+ clock rate 2000000
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router bgp 65020
+ bgp router-id 10.10.10.10
+ bgp log-neighbor-changes
+ no synchronization
+ neighbor 115.205.30.2 remote-as 65001
+ neighbor 115.205.30.6 remote-as 65001
+ neighbor 115.205.30.10 remote-as 65001
+ network 115.205.30.0 mask 255.255.255.252
+ network 115.205.30.4 mask 255.255.255.252
+ network 115.205.30.8 mask 255.255.255.252
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 Null0 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+ISP2-R# 

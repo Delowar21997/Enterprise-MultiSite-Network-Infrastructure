@@ -1,0 +1,215 @@
+DIST-SW2#sh running-config 
+Building configuration...
+
+Current configuration : 3629 bytes
+!
+version 12.2(37)SE1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname DIST-SW2
+!
+!
+no profinet
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Port-channel2
+ description DIST-SW2_To_DIST-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Port-channel3
+ description DIST-SW2_To_DIST-SW3
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Port-channel7
+ description DIST-SW2_to_Core-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+!
+interface Port-channel10
+ description DIST-SW2_to_Core-SW2
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+!
+interface FastEthernet0/1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ shutdown
+!
+interface FastEthernet0/3
+ description LACP_to_Core-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 7 mode active
+!
+interface FastEthernet0/4
+ description LACP_to_Core-SW2
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 10 mode active
+!
+interface FastEthernet0/5
+ description LACP_to_Core-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 7 mode active
+!
+interface FastEthernet0/6
+ description LACP_to_Core-SW2
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 10 mode active
+!
+interface FastEthernet0/7
+ shutdown
+!
+interface FastEthernet0/8
+ shutdown
+!
+interface FastEthernet0/9
+ description LACP_To_DIST-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 2 mode active
+!
+interface FastEthernet0/10
+ description LACP_To_DIST-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 2 mode active
+!
+interface FastEthernet0/11
+ description LACP_To_DIST-SW3
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 3 mode active
+!
+interface FastEthernet0/12
+ description LACP_To_DIST-SW3
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 3 mode active
+!
+interface FastEthernet0/13
+ shutdown
+!
+interface FastEthernet0/14
+ shutdown
+!
+interface FastEthernet0/15
+ shutdown
+!
+interface FastEthernet0/16
+ shutdown
+!
+interface FastEthernet0/17
+ shutdown
+!
+interface FastEthernet0/18
+ shutdown
+!
+interface FastEthernet0/19
+ shutdown
+!
+interface FastEthernet0/20
+ shutdown
+!
+interface FastEthernet0/21
+ shutdown
+!
+interface FastEthernet0/22
+ shutdown
+!
+interface FastEthernet0/23
+ shutdown
+!
+interface FastEthernet0/24
+ shutdown
+!
+interface GigabitEthernet0/1
+ switchport access vlan 610
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip default-gateway 192.168.1.1
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+!
+end
+
+
+DIST-SW2# 

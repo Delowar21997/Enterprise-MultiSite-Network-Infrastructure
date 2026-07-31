@@ -1,0 +1,421 @@
+Core-SW2#sh running-config 
+Building configuration...
+
+Current configuration : 9647 bytes
+!
+version 12.2(37)SE1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Core-SW2
+!
+!
+no profinet
+!
+!
+ip dhcp excluded-address 192.168.52.1 192.168.52.50
+ip dhcp excluded-address 192.168.50.1 192.168.50.100
+ip dhcp excluded-address 192.168.51.1 192.168.51.100
+!
+ip dhcp pool WiFi-Guest
+ network 192.168.51.0 255.255.255.0
+ default-router 192.168.51.1
+ dns-server 215.105.50.10
+ domain-name www.nafiya.com
+ip dhcp pool WiFi-Office
+ network 192.168.50.0 255.255.255.0
+ default-router 192.168.50.1
+ dns-server 215.105.50.10
+ domain-name www.nafiya.com
+ip dhcp pool WiFi_IT-Group
+ network 192.168.52.0 255.255.255.128
+ default-router 192.168.52.1
+ dns-server 215.105.50.10
+ domain-name www.nafiya.com
+!
+!
+ip routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+spanning-tree vlan 1,100,110,120,130,140,150,160,170,180,220,250-252,350,510 priority 28672
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ description Core-SW2_To_Core-SW1
+ switchport trunk native vlan 350
+ switchport trunk allowed vlan 100,110,120,130,140,150,160,170,180,220,250-252,350,510,610
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Port-channel6
+ description Core-SW2_to_DIST-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+!
+interface Port-channel10
+ description Core-SW2_to_DIST-SW2
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+!
+interface Port-channel11
+ description Core-SW2_to_DIST-SW3
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+!
+interface Port-channel12
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+!
+interface FastEthernet0/1
+ switchport trunk native vlan 350
+ switchport trunk allowed vlan 250-252,350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree cost 20
+ spanning-tree link-type point-to-point
+!
+interface FastEthernet0/2
+ no switchport
+ ip address 172.20.40.6 255.255.255.252
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 51 md5 nafiya123
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/3
+ no switchport
+ ip address 172.20.30.6 255.255.255.252
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 51 md5 nafiya123
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/4
+ description LACP_to_DIST-SW4
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 12 mode active
+!
+interface FastEthernet0/5
+ description LACP_to_DIST-SW3
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 11 mode active
+!
+interface FastEthernet0/6
+ description LACP_to_DIST-SW2
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 10 mode active
+!
+interface FastEthernet0/7
+ description LACP_to_DIST-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 6 mode active
+!
+interface FastEthernet0/8
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/9
+ description LACP_To_Core-SW1
+ switchport trunk native vlan 350
+ switchport trunk allowed vlan 100,110,120,130,140,150,160,170,180,220,250-252,350,510,610
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface FastEthernet0/10
+ description LACP_To_Core-SW1
+ switchport trunk native vlan 350
+ switchport trunk allowed vlan 100,110,120,130,140,150,160,170,180,220,250-252,350,510,610
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface FastEthernet0/11
+ description LACP_to_DIST-SW4
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 12 mode active
+!
+interface FastEthernet0/12
+ description LACP_to_DIST-SW3
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 11 mode active
+!
+interface FastEthernet0/13
+ description LACP_to_DIST-SW2
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 10 mode active
+!
+interface FastEthernet0/14
+ description LACP_to_DIST-SW1
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree link-type point-to-point
+ channel-group 6 mode active
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+ description To-NVR-SW
+ switchport trunk native vlan 350
+ switchport trunk allowed vlan 350,610
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+ switchport trunk native vlan 350
+ switchport trunk allowed vlan 250-251,350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree cost 20
+!
+interface GigabitEthernet0/2
+ description "To DMZ-SW"
+ switchport trunk native vlan 350
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan100
+ mac-address 0003.e45d.e801
+ ip address 10.10.10.3 255.255.255.0
+ standby 100 ip 10.10.10.1
+ standby 100 priority 90
+ standby 100 preempt
+!
+interface Vlan110
+ mac-address 0003.e45d.e802
+ ip address 10.10.20.3 255.255.255.0
+ standby 110 ip 10.10.20.1
+ standby 110 priority 90
+ standby 110 preempt
+!
+interface Vlan120
+ mac-address 0003.e45d.e803
+ ip address 10.10.30.3 255.255.255.0
+ standby 120 ip 10.10.30.1
+ standby 120 priority 90
+ standby 120 preempt
+!
+interface Vlan130
+ mac-address 0003.e45d.e804
+ ip address 10.10.40.3 255.255.255.0
+ standby 130 ip 10.10.40.1
+ standby 130 priority 90
+ standby 130 preempt
+!
+interface Vlan140
+ mac-address 0003.e45d.e805
+ ip address 10.10.50.3 255.255.255.0
+ standby 140 ip 10.10.50.1
+ standby 140 priority 90
+ standby 140 preempt
+!
+interface Vlan150
+ mac-address 0003.e45d.e806
+ ip address 10.10.60.3 255.255.255.0
+ standby 150 ip 10.10.60.1
+ standby 150 priority 110
+ standby 150 preempt
+!
+interface Vlan160
+ mac-address 0003.e45d.e807
+ ip address 10.10.70.3 255.255.255.0
+ standby 160 ip 10.10.70.1
+ standby 160 priority 110
+ standby 160 preempt
+!
+interface Vlan170
+ mac-address 0003.e45d.e808
+ ip address 10.10.80.3 255.255.255.0
+ standby 170 ip 10.10.80.1
+ standby 170 priority 150
+ standby 170 preempt
+!
+interface Vlan180
+ mac-address 0003.e45d.e809
+ ip address 10.10.90.3 255.255.255.0
+ standby 180 ip 10.10.90.1
+ standby 180 priority 110
+ standby 180 preempt
+!
+interface Vlan220
+ description "To DMZ-SW"
+ mac-address 0003.e45d.e80a
+ ip address 215.105.50.3 255.255.255.0
+ standby 220 ip 215.105.50.1
+ standby 220 priority 90
+ standby 220 preempt
+!
+interface Vlan250
+ mac-address 0003.e45d.e80b
+ ip address 192.168.50.3 255.255.255.0
+ standby 250 ip 192.168.50.1
+ standby 250 priority 90
+ standby 250 preempt
+!
+interface Vlan251
+ mac-address 0003.e45d.e80c
+ ip address 192.168.51.3 255.255.255.0
+ standby 251 ip 192.168.51.1
+ standby 251 priority 90
+ standby 251 preempt
+!
+interface Vlan252
+ mac-address 0003.e45d.e80d
+ ip address 192.168.52.3 255.255.255.128
+ standby 252 ip 192.168.52.1
+ standby 252 priority 90
+ standby 252 preempt
+!
+interface Vlan350
+ mac-address 0003.e45d.e80e
+ ip address 192.168.1.1 255.255.255.0
+!
+interface Vlan510
+ mac-address 0003.e45d.e80f
+ ip address 10.30.1.13 255.255.255.128
+ ip helper-address 10.30.1.1
+ standby 51 ip 10.30.1.11
+ standby 51 priority 90
+ standby 51 preempt
+!
+interface Vlan610
+ mac-address 0003.e45d.e810
+ ip address 10.60.1.3 255.255.255.128
+ standby version 2
+ standby 610 ip 10.60.1.1
+ standby 610 priority 90
+ standby 610 preempt
+!
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ passive-interface Vlan100
+ passive-interface Vlan110
+ passive-interface Vlan120
+ passive-interface Vlan130
+ passive-interface Vlan140
+ passive-interface Vlan150
+ passive-interface Vlan160
+ passive-interface Vlan170
+ passive-interface Vlan180
+ passive-interface Vlan220
+ passive-interface Vlan250
+ passive-interface Vlan251
+ passive-interface Vlan252
+ passive-interface Vlan350
+ passive-interface Vlan510
+ network 172.20.30.4 0.0.0.3 area 0
+ network 172.20.40.4 0.0.0.3 area 0
+ network 10.10.10.0 0.0.0.255 area 0
+ network 10.10.20.0 0.0.0.255 area 0
+ network 10.10.30.0 0.0.0.255 area 0
+ network 10.10.40.0 0.0.0.255 area 0
+ network 10.10.50.0 0.0.0.255 area 0
+ network 10.10.60.0 0.0.0.255 area 0
+ network 10.10.70.0 0.0.0.255 area 0
+ network 10.10.80.0 0.0.0.255 area 0
+ network 10.10.90.0 0.0.0.255 area 0
+ network 192.168.50.0 0.0.0.255 area 0
+ network 192.168.51.0 0.0.0.255 area 0
+ network 192.168.52.0 0.0.0.127 area 0
+ network 192.168.1.0 0.0.0.255 area 0
+ network 215.105.50.0 0.0.0.255 area 0
+ network 10.30.1.0 0.0.0.127 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+!
+end
+
+
+Core-SW2#

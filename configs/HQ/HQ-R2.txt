@@ -1,0 +1,131 @@
+HQ-R2#sh running-config 
+Building configuration...
+
+Current configuration : 1803 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname HQ-R2
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FTX15243Y3O-
+license boot module c2900 technology-package uck9
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Tunnel2
+ ip address 172.16.20.1 255.255.255.252
+ mtu 1476
+ tunnel source GigabitEthernet0/0/0
+ tunnel destination 115.205.30.10
+!
+!
+interface Tunnel3
+ ip address 172.16.20.5 255.255.255.252
+ mtu 1476
+ tunnel source GigabitEthernet0/1/0
+ tunnel destination 203.105.20.10
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.20.20.1 255.255.255.252
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 51 md5 nafiya123
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 172.20.20.5 255.255.255.252
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 51 md5 nafiya123
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/0
+ ip address 115.205.30.6 255.255.255.252
+!
+interface GigabitEthernet0/1/0
+ ip address 203.105.20.6 255.255.255.252
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 6.6.6.6
+ log-adjacency-changes
+ network 172.20.20.0 0.0.0.3 area 0
+ network 172.20.20.4 0.0.0.3 area 0
+ network 172.16.20.0 0.0.0.3 area 0
+ network 172.16.20.4 0.0.0.3 area 0
+ default-information originate
+!
+router bgp 65001
+ bgp router-id 6.6.6.6
+ bgp log-neighbor-changes
+ no synchronization
+ neighbor 203.105.20.5 remote-as 65010
+ neighbor 115.205.30.5 remote-as 65020
+ network 215.105.50.0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+HQ-R2#
