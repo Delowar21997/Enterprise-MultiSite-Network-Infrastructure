@@ -15,7 +15,6 @@ The goal was to create a network that closely reflects the design principles use
 ## Network Topology
 
 <img width="2349" height="1700" alt="Network Infra3 drawio" src="topology.png" />
-<img width="2349" height="1700" alt="Network Infra3 drawio" src="https://github.com/user-attachments/assets/ecd32286-3956-47df-8ab0-53bcc7a5be2f" />
 ---
 
 ## Features
