@@ -9,7 +9,7 @@ The project focuses on enterprise routing, switching, WAN connectivity, high ava
 ## Network Topology
 
 <p align="center">
-  <img src="diagrams/topology.png" alt="Enterprise Network Topology" width="100%">
+  <img src="[diagrams/topology.png](https://github.com/Delowar21997/Enterprise-MultiSite-Network-Infrastructure/blob/main/diagrams/topology.png)" alt="Enterprise Network Topology" width="100%">
 </p>
 
 ---
