@@ -1,4 +1,4 @@
-<img width="2349" height="1700" alt="Network Infra3 drawio" src="https://github.com/user-attachments/assets/ecd32286-3956-47df-8ab0-53bcc7a5be2f" /># Enterprise Multi-Site Network Infrastructure
+Enterprise Multi-Site Network Infrastructure
 
 A practical Cisco Packet Tracer project that simulates a real-world enterprise network connecting a Headquarters (HQ) with two branch offices. The network is designed with redundant WAN connectivity, dynamic routing, VLAN segmentation, and centralized enterprise services to provide a reliable, scalable, and secure infrastructure.
 
@@ -14,6 +14,7 @@ The goal was to create a network that closely reflects the design principles use
 
 ## Network Topology
 
+<img width="2349" height="1700" alt="Network Infra3 drawio" src="https://github.com/user-attachments/assets/ecd32286-3956-47df-8ab0-53bcc7a5be2f" />
 ---
 
 ## Features
